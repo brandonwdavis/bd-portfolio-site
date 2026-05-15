@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brandon Davis — Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --ink: #15171a;
+    --ink-2: #3a3f47;
+    --ink-3: #6b727c;
+    --line: #e6e3da;
+    --line-2: #ecebe5;
+    --accent: oklch(0.45 0.13 240);
+    --accent-soft: oklch(0.95 0.03 240);
+    --accent-ink: oklch(0.32 0.12 240);
+    --radius: 14px;
+    --maxw: 760px;
+    --sans: 'Inter', system-ui, -apple-system, Helvetica, Arial, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  [data-theme="dark"] {
+    --bg: #0e1014;
+    --surface: #14171d;
+    --ink: #ecedef;
+    --ink-2: #c2c6cd;
+    --ink-3: #878d97;
+    --line: #232831;
+    --line-2: #1c2129;
+    --accent: oklch(0.72 0.13 240);
+    --accent-soft: oklch(0.28 0.08 240);
+    --accent-ink: oklch(0.82 0.12 240);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .page {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 88px 32px 120px;
+  }
+
+  /* Header */
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 64px;
+  }
+  .brand {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+  }
+  .brand .dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 8px;
+    transform: translateY(-1px);
+    vertical-align: middle;
+  }
+  .nav {
+    display: flex;
+    gap: 22px;
+  }
+  .nav a {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav a:hover { color: var(--accent); }
+  .mode-toggle {
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-2);
+    cursor: pointer;
+    padding: 0;
+    margin-left: 4px;
+    transition: color 0.15s, border-color 0.15s, transform 0.2s;
+  }
+  .mode-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .mode-toggle svg { width: 14px; height: 14px; }
+  body[data-theme="light"] .mode-toggle .icon-moon { display: block; }
+  body[data-theme="light"] .mode-toggle .icon-sun { display: none; }
+  body[data-theme="dark"] .mode-toggle .icon-moon { display: none; }
+  body[data-theme="dark"] .mode-toggle .icon-sun { display: block; }
+
+  /* Hero */
+  .hero {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 28px;
+    align-items: center;
+    margin-bottom: 56px;
+  }
+  .avatar {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    background: var(--line-2);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+    display: block;
+  }
+  .hero h1 {
+    margin: 0 0 6px;
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  .hero .tag {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.01em;
+  }
+  .hero .tag .sep { margin: 0 8px; opacity: 0.5; }
+
+  /* Section */
+  section { margin-top: 72px; }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .sec-head .spacer { flex: 1; }
+  .sec-head .resume-btn {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+  .sec-head .resume-btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+  .sec-head .resume-btn svg {
+    width: 14px; height: 14px;
+  }
+  .sec-head .num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+  }
+  .sec-head h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  /* About */
+  .about p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0 0 16px;
+    text-wrap: pretty;
+  }
+  .about p:last-child { margin-bottom: 0; }
+  .about strong { color: var(--ink); font-weight: 600; }
+
+  /* Roles */
+  .roles {
+    display: flex;
+    flex-direction: column;
+  }
+  .role {
+    border-top: 1px solid var(--line);
+    padding: 22px 0;
+    transition: padding 0.2s ease;
+  }
+  .role:last-child { border-bottom: 1px solid var(--line); }
+  .role-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: start;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    color: inherit;
+    font: inherit;
+  }
+  .role-head:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    border-radius: 4px;
+  }
+  .role-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .role-current {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+    padding: 2px 7px;
+    border-radius: 999px;
+  }
+  .role-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .role-headline {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .role-headline .titles { min-width: 0; flex: 1; }
+  .logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    display: block;
+  }
+  .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .role-company {
+    font-size: 15px;
+    color: var(--ink-2);
+    margin-top: 2px;
+  }
+  .role-company .at {
+    color: var(--ink-3);
+    margin: 0 6px;
+  }
+  .role-sub {
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+  .role-sub .pipe {
+    opacity: 0.4;
+  }
+  .role-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    margin-top: 2px;
+  }
+  .role-head:hover .role-toggle {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .role-toggle svg {
+    width: 14px; height: 14px;
+    transition: transform 0.25s ease;
+  }
+  .role.open .role-toggle {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .role.open .role-toggle svg { transform: rotate(45deg); }
+
+  .role-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+  }
+  .role.open .role-body {
+    grid-template-rows: 1fr;
+  }
+  .role-body-inner {
+    overflow: hidden;
+  }
+  .role-body-pad {
+    padding: 20px 0 6px 0;
+  }
+  .role.open + .role,
+  .role.open { /* spacing breath when open */ }
+
+  .role-summary {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    font-style: italic;
+    margin: 0 0 16px;
+    padding-left: 22px;
+    border-left: 2px solid var(--accent-soft);
+    text-wrap: pretty;
+  }
+  .bullets {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bullets li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 10px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .bullets li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .role-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 18px;
+  }
+  .role-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    background: var(--line-2);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  /* Education */
+  .edu {
+    display: flex;
+    flex-direction: column;
+  }
+  .edu-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+  }
+  .edu-row:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+  .edu-row:last-child { border-bottom: 1px solid var(--line); }
+  .edu-deg { font-size: 16px; font-weight: 600; margin: 0 0 3px; }
+  .edu-school { font-size: 14.5px; color: var(--ink-2); }
+  .edu-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    align-self: center;
+    white-space: nowrap;
+  }
+
+  /* Contact */
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .contact a {
+    background: var(--surface);
+    padding: 18px 20px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: background 0.15s;
+  }
+  .contact a:hover { background: var(--accent-soft); }
+  .contact .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .contact .val {
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  /* Footer */
+  .foot {
+    margin-top: 88px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+  }
+
+  /* Career overview */
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 0 0 36px;
+  }
+  .ov-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .ov-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .ov-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .ov-stat {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+  .ov-stat .plus {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .ov-note {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin: 4px 0 0;
+    text-wrap: pretty;
+  }
+  .ov-note .ov-sub {
+    display: block;
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 720px) {
+    .overview { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 56px 22px 80px; }
+    .hero { grid-template-columns: 96px 1fr; gap: 18px; }
+    .avatar { width: 96px; height: 96px; }
+    .hero h1 { font-size: 26px; }
+    .nav { gap: 14px; }
+    .contact { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-theme="light">
+
+<div class="page" data-screen-label="Personal site">
+
+  <header class="top">
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education &amp; Certifications</a>
+      <a href="#contact">Contact</a>
+      <button class="mode-toggle" id="mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="avatar"><img src="headshot.png" alt="Brandon Davis" /></div>
+    <div>
+      <h1>Brandon Davis</h1>
+      <div class="tag">
+        Product Manager
+        <span class="sep">·</span>Fintech
+        <span class="sep">·</span>B2B SaaS
+        <span class="sep">·</span>Integrations
+      </div>
+      <div class="tag" style="margin-top:6px;">Charlotte, NC</div>
+    </div>
+  </div>
+
+  <section id="about" class="about">
+    <div class="sec-head">
+      <span class="num">01</span>
+      <h2>About</h2>
+    </div>
+    <p>I'm a product manager focused on the parts of B2B Fintech where data moves between systems: invoice platforms, integrations, client portals, and the workflows that hold them together.</p>
+    <p>I've held a number of different roles in the Fintech space ranging from software support to implementation/project management before to finally finding my home in product management.</p>
+    <p>Obsessed with personal finance, live for problem solving, and always tinkering with something on the side.</p>
+    <p>Here is a bit more about me:</p>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head">
+      <span class="num">02</span>
+      <h2>Experience</h2>
+      <span class="spacer"></span>
+      <a class="resume-btn" href="Brandon Davis Resume.pdf" download>
+        Resume
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </a>
+    </div>
+
+    <div class="overview">
+      <div class="ov-card">
+        <span class="ov-label">Product</span>
+        <span class="ov-stat">6<span class="plus">+</span> yrs</span>
+        <p class="ov-note">
+          4<span class="plus" style="color:var(--accent);">+</span> years owning a client engagement portal for wealth managers.
+          <span class="ov-sub">2<span class="plus" style="color:var(--accent);">+</span> years owning a centralized invoice data platform powering internal and external applications in accounts payable.</span>
+        </p>
+      </div>
+      <div class="ov-card">
+        <span class="ov-label">Fintech</span>
+        <span class="ov-stat">11<span class="plus">+</span> yrs</span>
+        <p class="ov-note">
+          9<span class="plus" style="color:var(--accent);">+</span> years on products and integrations across trading platforms, portfolio accounting systems, and client portals in the investment software space.
+          <span class="ov-sub">The most recent 2<span class="plus" style="color:var(--accent);">+</span> years on platforms in accounts payable software.</span>
+        </p>
+      </div>
+      <div class="ov-card">
+        <span class="ov-label">Data Integrations</span>
+        <span class="ov-stat">9<span class="plus">+</span> yrs</span>
+        <p class="ov-note">
+          Split between APIs, ETL pipelines, event-driven systems, and batch file processing.
+        </p>
+      </div>
+    </div>
+
+    <div class="roles" id="roles"></div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head">
+      <span class="num">03</span>
+      <h2>Education &amp; Certifications</h2>
+    </div>
+    <div class="edu">
+      <div class="edu-row">
+        <div>
+          <div class="edu-deg">Bachelor of Science, International Affairs · Concentration in Economics</div>
+          <div class="edu-school">Florida State University · Minor in Business</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-deg">Certified Scrum Product Owner (CSPO)</div>
+          <div class="edu-school">Scrum Alliance</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head">
+      <span class="num">04</span>
+      <h2>Contact</h2>
+    </div>
+    <div class="contact">
+      <a href="/cdn-cgi/l/email-protection#8eecfcefe0eae1e0f9eaeff8e7fdbfbecee9e3efe7e2a0ede1e3">
+        <span class="label">Email</span>
+        <span class="val"><span class="__cf_email__" data-cfemail="1b79697a757f74756c7f7a6d72682a2b5b7c767a727735787476">[email&#160;protected]</span></span>
+      </a>
+      <a href="https://www.linkedin.com/in/brandonwdavis10" target="_blank" rel="noopener">
+        <span class="label">LinkedIn</span>
+        <span class="val">/in/brandonwdavis10</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>© 2026 Brandon Davis</span>
+  </footer>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const ROLES = [
+    {
+      logoSrc: "uploads/AvidXchangeLogo.jpg",
+      logoAlt: "AvidXchange logo",
+      title: "Product Manager",
+      company: "AvidXchange",
+      location: "Charlotte, NC",
+      dates: "Nov 2023 — Feb 2026",
+      summary: "Drove product development for IMS (Invoice Management Service), the centralized invoice data platform and single source of truth for internal invoice data, powering integrations and supplier-facing workflows.",
+      tags: ["Fintech", "AP Software", "Invoice Platform", "Event-Driven Architecture"],
+      bullets: [
+        "Led integration of AvidAscend invoices into IMS, increasing annual invoice ingestion by <strong>1.7M (+4.5%)</strong> and broadening access to invoice data from a new vertical.",
+        "Increased Payment Accelerator adoption by <strong>60K users in 2025</strong> by introducing invoice submitter contact data into IMS event streams, enabling targeted supplier outreach.",
+        "Owned roadmap and backlog prioritization for a 6-person team, driving <strong>Top 5 company-wide sprint performance (CvC - Committed vs Completed)</strong> in 2025.",
+        "Reduced infrastructure costs by <strong>$30K annually</strong> by containerizing services and migrating workloads from Azure to internal Container Orchestration Platform (COP)."
+      ]
+    },
+    {
+      logoSrc: "uploads/SSNCLogo.jpg",
+      logoAlt: "SS&C Advent logo",
+      title: "Product Manager",
+      company: "SS&C Advent Software",
+      location: "Remote",
+      dates: "Oct 2019 — Nov 2023",
+      summary: "Led product execution and roadmap delivery for Modestspark, a client engagement portal for investment advisors and wealth managers, through UX improvements, automation enhancements, and bug fixes.",
+      tags: ["Fintech", "Client Portal", "User Interviews", "DB Migration"],
+      bullets: [
+        "Defined product strategy and roadmap through collaboration with executive team, internal/external stakeholders, and pulse checks with resellers.",
+        "Increased client base by <strong>14% in Q1 2021</strong> by strengthening reseller relationships through prioritization of outstanding legacy development requests and establishing pulse checks.",
+        "Executed end-to-end database migration from IBM Compose (DBaaS) to MongoDB Atlas, <strong>reducing hosting costs by 85%</strong>.",
+        "Rebuilt 2-Factor Authentication workflow by designing a customizable authentication duration feature."
+      ]
+    },
+    {
+      logoSrc: "uploads/SSNCLogo.jpg",
+      logoAlt: "SS&C Advent logo",
+      title: "Solutions Analyst",
+      company: "SS&C Advent Software",
+      location: "Jacksonville, FL",
+      dates: "Feb 2017 — Oct 2019",
+      summary: "Guided <strong>40%</strong> of clients as main point of contact from installation through implementation and beyond for Black Diamond Link, an ETL data sync between internal systems.",
+      tags: ["Fintech","ETL Integration", "Implementation"],
+      bullets: [
+        "Led weekly meeting for 5 teams involved in the Black Diamond Link project to review stakeholder feedback, development backlog, and outstanding project issues.",
+        "Volunteered to build and own the APX/AXYS-to-Modestspark integration in addition to support escalations, implementation, and environment creation/deletion.",
+        "Specialized as Moxy subject matter expert for Black Diamond relationship managers by creating and presenting new release documentation to existing/prospective clients."
+      ]
+    },
+    {
+      logoSrc: "uploads/SSNCLogo.jpg",
+      logoAlt: "SS&C Advent logo",
+      title: "Client Support Specialist",
+      company: "SS&C Advent Software",
+      location: "Jacksonville, FL",
+      dates: "Sep 2014 — Jan 2017",
+      summary: "Provided in-depth technical support for Moxy, Advent Software's trade order management application, closing over 1,700 cases.",
+      tags: ["Fintech","Customer Support", "Trade OMS", "SQL"],
+      bullets: [
+        "Maintained above <strong>95% \u201CTop Box\u201D</strong> (rating of 9 or 10 out of 10) on all customer satisfaction surveys received.",
+        "Led in-person Moxy data integration training for support teams in Jacksonville, Florida and Manila, Philippines.",
+        "Queried and analyzed data using SQL to troubleshoot client and system issues within the Moxy database"
+      ]
+    },
+    {
+      logoSrc: "uploads/DeutscheLogo.jpg",
+      logoAlt: "Deutsche Bank logo",
+      title: "Analyst",
+      company: "Deutsche Bank",
+      location: "Jacksonville, FL",
+      dates: "Jun 2013 — Sep 2014",
+      summary: "Supported the Emerging Markets trading desk by confirming and allocating multi-million dollar fixed income and foreign exchange trades with major institutional counterparties, ensuring accurate settlement and post-trade processing.",
+      tags: ["Emerging Markets", "Trade Operations", "Fixed Income"],
+      bullets: [
+        "Confirmed and allocated multi-million dollar fixed income and foerign exchange trades executed by the Emerging Markets sales desk.",
+        "Partnered daily with sales, trading, and middle-office teams to resolve trade discrepancies and ensure timely settlement."
+      ]
+    }
+  ];
+
+  const rolesEl = document.getElementById("roles");
+  ROLES.forEach((r, i) => {
+    const el = document.createElement("div");
+    el.className = "role";
+    el.innerHTML = `
+      <button class="role-head" aria-expanded="false" aria-controls="role-body-${i}">
+        <div class="role-headline">
+          <span class="logo"><img src="${r.logoSrc}" alt="${r.logoAlt}" /></span>
+          <div class="titles">
+            ${r.current ? `<div class="role-meta-top"><span class="role-current">● Current</span></div>` : ""}
+            <h3 class="role-title">${r.title}</h3>
+            <div class="role-company">${r.company}</div>
+            <div class="role-sub">
+              <span>${r.dates}</span>
+              <span class="pipe">/</span>
+              <span>${r.location}</span>
+            </div>
+          </div>
+        </div>
+        <span class="role-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </span>
+      </button>
+      <div class="role-body" id="role-body-${i}">
+        <div class="role-body-inner">
+          <div class="role-body-pad">
+            ${r.summary ? `<p class="role-summary">${r.summary}</p>` : ""}
+            <ul class="bullets">
+              ${r.bullets.map(b => `<li>${b}</li>`).join("")}
+            </ul>
+            <div class="role-tags">
+              ${r.tags.map(t => `<span class="role-tag">${t}</span>`).join("")}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    rolesEl.appendChild(el);
+
+    const btn = el.querySelector(".role-head");
+    btn.addEventListener("click", () => {
+      const open = el.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(open));
+    });
+  });
+
+  // Smooth scroll for nav
+  document.querySelectorAll('.nav a, .brand').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
+
+  const modeToggle = document.getElementById('mode-toggle');
+  const savedTheme = localStorage.getItem('bd-theme');
+  if (savedTheme) document.body.dataset.theme = savedTheme;
+  modeToggle.addEventListener('click', () => {
+    const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.body.dataset.theme = next;
+    localStorage.setItem('bd-theme', next);
+  });
+</script>
+
+<!-- Tweaks -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<div id="tweaks-root"></div>
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "light",
+  "accent": "#1f4fb8",
+  "density": "spacious",
+  "expandAll": false
+}/*EDITMODE-END*/;
+
+const ACCENTS = {
+  "#1f4fb8": "oklch(0.45 0.13 240)",
+  "#1d6e54": "oklch(0.48 0.12 165)",
+  "#3b3c3f": "oklch(0.40 0.01 250)",
+  "#7a3aa0": "oklch(0.45 0.13 305)"
+};
+const ACCENT_SOFT = {
+  "#1f4fb8": "oklch(0.95 0.03 240)",
+  "#1d6e54": "oklch(0.95 0.03 165)",
+  "#3b3c3f": "oklch(0.95 0.005 250)",
+  "#7a3aa0": "oklch(0.95 0.03 305)"
+};
+const ACCENT_INK = {
+  "#1f4fb8": "oklch(0.32 0.12 240)",
+  "#1d6e54": "oklch(0.32 0.10 165)",
+  "#3b3c3f": "oklch(0.25 0.01 250)",
+  "#7a3aa0": "oklch(0.32 0.12 305)"
+};
+
+function App() {
+  const [t, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
+
+  React.useEffect(() => {
+    document.body.dataset.theme = t.theme;
+    const root = document.documentElement;
+    root.style.setProperty('--accent', ACCENTS[t.accent] || ACCENTS["#1f4fb8"]);
+    root.style.setProperty('--accent-soft', ACCENT_SOFT[t.accent] || ACCENT_SOFT["#1f4fb8"]);
+    root.style.setProperty('--accent-ink', ACCENT_INK[t.accent] || ACCENT_INK["#1f4fb8"]);
+    document.querySelector('.page').style.setProperty('--maxw', t.density === 'compact' ? '680px' : t.density === 'spacious' ? '820px' : '760px');
+  }, [t.theme, t.accent, t.density]);
+
+  React.useEffect(() => {
+    document.querySelectorAll('.role').forEach(r => {
+      const btn = r.querySelector('.role-head');
+      if (t.expandAll) {
+        r.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        r.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }, [t.expandAll]);
+
+  const { TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakToggle } = window;
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection title="Theme">
+        <TweakRadio
+          label="Mode"
+          value={t.theme}
+          onChange={v => setTweak('theme', v)}
+          options={[{value:'light',label:'Light'},{value:'dark',label:'Dark'}]}
+        />
+        <TweakColor
+          label="Accent"
+          value={t.accent}
+          onChange={v => setTweak('accent', v)}
+          options={Object.keys(ACCENTS)}
+        />
+      </TweakSection>
+      <TweakSection title="Layout">
+        <TweakRadio
+          label="Density"
+          value={t.density}
+          onChange={v => setTweak('density', v)}
+          options={[{value:'compact',label:'Compact'},{value:'comfortable',label:'Comfy'},{value:'spacious',label:'Spacious'}]}
+        />
+        <TweakToggle
+          label="Expand all roles"
+          value={t.expandAll}
+          onChange={v => setTweak('expandAll', v)}
+        />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App/>);
+</script>
+
+</body>
+</html>
