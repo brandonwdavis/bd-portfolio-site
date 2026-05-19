@@ -121,14 +121,14 @@
   /* Hero */
   .hero {
     display: grid;
-    grid-template-columns: 132px 1fr;
-    gap: 28px;
+    grid-template-columns: 156px 1fr;
+    gap: 32px;
     align-items: center;
     margin-bottom: 56px;
   }
   .avatar {
-    width: 132px;
-    height: 132px;
+    width: 156px;
+    height: 156px;
     border-radius: 50%;
     background: var(--line-2);
     border: 1px solid var(--line);
@@ -282,12 +282,40 @@
     background: var(--surface);
     border: 1px solid var(--line);
     display: block;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
   }
   .logo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.25s ease;
+  }
+  .logo.logo-contain img {
+    object-fit: contain;
+    padding: 3px;
+  }
+  .logo.logo-zoom img {
+    transform: scale(1.1);
+  }
+  a.logo.logo-zoom:hover img {
+    transform: scale(1.17);
+  }
+  a.logo {
+    text-decoration: none;
+  }
+  a.logo:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px -4px rgba(0,0,0,0.15);
+  }
+  a.logo:hover img {
+    transform: scale(1.06);
+  }
+  a.logo:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
   .role-company {
     font-size: 15px;
@@ -417,8 +445,9 @@
   }
   .edu-row {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr auto;
     gap: 16px;
+    align-items: center;
     padding: 22px 0;
     border-top: 1px solid var(--line);
   }
@@ -544,8 +573,8 @@
 
   @media (max-width: 600px) {
     .page { padding: 56px 22px 80px; }
-    .hero { grid-template-columns: 96px 1fr; gap: 18px; }
-    .avatar { width: 96px; height: 96px; }
+    .hero { grid-template-columns: 112px 1fr; gap: 20px; }
+    .avatar { width: 112px; height: 112px; }
     .hero h1 { font-size: 26px; }
     .nav { gap: 14px; }
     .contact { grid-template-columns: 1fr; }
@@ -570,7 +599,7 @@
   </header>
 
   <div class="hero">
-    <div class="avatar"><img src="/assets/images/Headshot.jpg" alt="Brandon Davis" /></div>
+    <div class="avatar"><img src="assets/images/Headshot.jpg" alt="Brandon Davis" /></div>
     <div>
       <h1>Brandon Davis</h1>
       <div class="tag">
@@ -641,12 +670,18 @@
     </div>
     <div class="edu">
       <div class="edu-row">
+        <a class="logo logo-zoom" href="https://www.fsu.edu/" target="_blank" rel="noopener" aria-label="Florida State University website">
+          <img src="assets/images/FloridaStateLogo.png" alt="Florida State University logo" />
+        </a>
         <div>
           <div class="edu-deg">Bachelor of Science, International Affairs · Concentration in Economics</div>
           <div class="edu-school">Florida State University · Minor in Business</div>
         </div>
       </div>
       <div class="edu-row">
+        <a class="logo logo-zoom" href="https://www.scrumalliance.org/" target="_blank" rel="noopener" aria-label="Scrum Alliance website">
+          <img src="assets/images/CSPOLogo.png" alt="Certified Scrum Product Owner badge" />
+        </a>
         <div>
           <div class="edu-deg">Certified Scrum Product Owner (CSPO)</div>
           <div class="edu-school">Scrum Alliance</div>
@@ -681,8 +716,9 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const ROLES = [
     {
-      logoSrc: "assets/images/AvidXchangeLogo.jpg",
+      logoSrc: "assets/images/AvidXchangeLogo.png",
       logoAlt: "AvidXchange logo",
+      logoHref: "https://www.avidxchange.com/",
       title: "Product Manager",
       company: "AvidXchange",
       location: "Charlotte, NC",
@@ -697,8 +733,9 @@
       ]
     },
     {
-      logoSrc: "assets/images/SSNCLogo.jpg",
+      logoSrc: "assets/images/SSNCLogo.png",
       logoAlt: "SS&C Advent logo",
+      logoHref: "https://www.advent.com/",
       title: "Product Manager",
       company: "SS&C Advent Software",
       location: "Remote",
@@ -713,8 +750,9 @@
       ]
     },
     {
-      logoSrc: "assets/images/SSNCLogo.jpg",
+      logoSrc: "assets/images/SSNCLogo.png",
       logoAlt: "SS&C Advent logo",
+      logoHref: "https://www.advent.com/",
       title: "Solutions Analyst",
       company: "SS&C Advent Software",
       location: "Jacksonville, FL",
@@ -728,8 +766,9 @@
       ]
     },
     {
-      logoSrc: "assets/images/SSNCLogo.jpg",
+      logoSrc: "assets/images/SSNCLogo.png",
       logoAlt: "SS&C Advent logo",
+      logoHref: "https://www.advent.com/",
       title: "Client Support Specialist",
       company: "SS&C Advent Software",
       location: "Jacksonville, FL",
@@ -743,8 +782,9 @@
       ]
     },
     {
-      logoSrc: "assets/images/DeutscheLogo.jpg",
+      logoSrc: "assets/images/DeutscheLogo.png",
       logoAlt: "Deutsche Bank logo",
+      logoHref: "https://www.db.com/",
       title: "Analyst",
       company: "Deutsche Bank",
       location: "Jacksonville, FL",
@@ -763,9 +803,9 @@
     const el = document.createElement("div");
     el.className = "role";
     el.innerHTML = `
-      <button class="role-head" aria-expanded="false" aria-controls="role-body-${i}">
+      <div class="role-head" role="button" tabindex="0" aria-expanded="false" aria-controls="role-body-${i}">
         <div class="role-headline">
-          <span class="logo"><img src="${r.logoSrc}" alt="${r.logoAlt}" /></span>
+          <a class="logo" href="${r.logoHref}" target="_blank" rel="noopener" aria-label="${r.company} website"><img src="${r.logoSrc}" alt="${r.logoAlt}" /></a>
           <div class="titles">
             ${r.current ? `<div class="role-meta-top"><span class="role-current">● Current</span></div>` : ""}
             <h3 class="role-title">${r.title}</h3>
@@ -783,7 +823,7 @@
             <line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
         </span>
-      </button>
+      </div>
       <div class="role-body" id="role-body-${i}">
         <div class="role-body-inner">
           <div class="role-body-pad">
@@ -801,9 +841,20 @@
     rolesEl.appendChild(el);
 
     const btn = el.querySelector(".role-head");
-    btn.addEventListener("click", () => {
+    const toggleOpen = () => {
       const open = el.classList.toggle("open");
       btn.setAttribute("aria-expanded", String(open));
+    };
+    btn.addEventListener("click", (e) => {
+      if (e.target.closest(".logo")) return;
+      toggleOpen();
+    });
+    btn.addEventListener("keydown", (e) => {
+      if (e.target.closest(".logo")) return;
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleOpen();
+      }
     });
   });
 
