@@ -716,7 +716,7 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const ROLES = [
     {
-      logoSrc: "assets/images/AvidXchangeLogo.png",
+      logoSrc: "assets/images/AvidXchangeLogo.jpg",
       logoAlt: "AvidXchange logo",
       logoHref: "https://www.avidxchange.com/",
       title: "Product Manager",
@@ -733,11 +733,11 @@
       ]
     },
     {
-      logoSrc: "assets/images/SSNCLogo.png",
+      logoSrc: "assets/images/SSNCLogo.jpg",
       logoAlt: "SS&C Advent logo",
       logoHref: "https://www.advent.com/",
       title: "Product Manager",
-      company: "SS&C Advent Software",
+      company: "SS&C Advent",
       location: "Remote",
       dates: "Oct 2019 — Nov 2023",
       summary: "Led product execution and roadmap delivery for Modestspark, a client engagement portal for investment advisors and wealth managers, through UX improvements, automation enhancements, and bug fixes.",
@@ -750,11 +750,11 @@
       ]
     },
     {
-      logoSrc: "assets/images/SSNCLogo.png",
+      logoSrc: "assets/images/SSNCLogo.jpg",
       logoAlt: "SS&C Advent logo",
       logoHref: "https://www.advent.com/",
       title: "Solutions Analyst",
-      company: "SS&C Advent Software",
+      company: "SS&C Advent",
       location: "Jacksonville, FL",
       dates: "Feb 2017 — Oct 2019",
       summary: "Guided <strong>40%</strong> of clients as main point of contact from installation through implementation and beyond for Black Diamond Link, an ETL data sync between internal systems.",
@@ -766,11 +766,11 @@
       ]
     },
     {
-      logoSrc: "assets/images/SSNCLogo.png",
+      logoSrc: "assets/images/SSNCLogo.jpg",
       logoAlt: "SS&C Advent logo",
       logoHref: "https://www.advent.com/",
       title: "Client Support Specialist",
-      company: "SS&C Advent Software",
+      company: "SS&C Advent",
       location: "Jacksonville, FL",
       dates: "Sep 2014 — Jan 2017",
       summary: "Provided in-depth technical support for Moxy, Advent Software's trade order management application, closing over 1,700 cases.",
@@ -782,7 +782,7 @@
       ]
     },
     {
-      logoSrc: "assets/images/DeutscheLogo.png",
+      logoSrc: "assets/images/DeutscheLogo.jpg",
       logoAlt: "Deutsche Bank logo",
       logoHref: "https://www.db.com/",
       title: "Analyst",
@@ -844,10 +844,20 @@
     const toggleOpen = () => {
       const open = el.classList.toggle("open");
       btn.setAttribute("aria-expanded", String(open));
+      gtag('event', 'toggle_role', {
+        role_title: r.title,
+        company: r.company,
+        action: open ? 'open' : 'close'
+      });
     };
     btn.addEventListener("click", (e) => {
       if (e.target.closest(".logo")) return;
       toggleOpen();
+    });
+
+    const logoLink = el.querySelector('.logo');
+    logoLink.addEventListener('click', () => {
+      gtag('event', 'click_company_link', { company: r.company });
     });
     btn.addEventListener("keydown", (e) => {
       if (e.target.closest(".logo")) return;
@@ -870,6 +880,27 @@
     });
   });
 
+  // Resume download
+  document.querySelector('.resume-btn').addEventListener('click', () => {
+    gtag('event', 'download_resume');
+  });
+
+  // Contact links
+  document.querySelector('.contact a[href*="linkedin"]').addEventListener('click', () => {
+    gtag('event', 'click_linkedin');
+  });
+  document.querySelector('.contact a[href*="email-protection"]').addEventListener('click', () => {
+    gtag('event', 'click_email');
+  });
+
+  // Education & certification links
+  document.querySelector('a[href*="fsu.edu"]').addEventListener('click', () => {
+    gtag('event', 'click_education_link', { name: 'Florida State University' });
+  });
+  document.querySelector('a[href*="scrumalliance"]').addEventListener('click', () => {
+    gtag('event', 'click_education_link', { name: 'Scrum Alliance - CSPO' });
+  });
+
   const modeToggle = document.getElementById('mode-toggle');
   const savedTheme = localStorage.getItem('bd-theme');
   if (savedTheme) document.body.dataset.theme = savedTheme;
@@ -877,6 +908,7 @@
     const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
     document.body.dataset.theme = next;
     localStorage.setItem('bd-theme', next);
+    gtag('event', 'toggle_theme', { theme: next });
   });
 </script>
 
