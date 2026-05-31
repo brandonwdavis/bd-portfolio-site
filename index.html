@@ -274,9 +274,9 @@
   }
   .role-headline .titles { min-width: 0; flex: 1; }
   .logo {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
     flex-shrink: 0;
     overflow: hidden;
     background: var(--surface);
@@ -302,6 +302,10 @@
   a.logo.logo-zoom:hover img {
     transform: scale(1.17);
   }
+  .logo.logo-light { background: #ffffff; }
+  .logo.logo-light.logo-contain img { padding: 2px; }
+  .logo.logo-zoomin img { transform: scale(1.22); }
+  a.logo.logo-zoomin:hover img { transform: scale(1.28); }
   a.logo {
     text-decoration: none;
   }
@@ -381,9 +385,6 @@
   .role-body-pad {
     padding: 20px 0 6px 0;
   }
-  .role.open + .role,
-  .role.open { /* spacing breath when open */ }
-
   .role-summary {
     font-size: 14.5px;
     line-height: 1.6;
@@ -436,6 +437,41 @@
     background: var(--line-2);
     padding: 3px 8px;
     border-radius: 4px;
+  }
+  .role-construction {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-left: 22px;
+    border-left: 2px solid var(--accent-soft);
+  }
+  .role-construction .rc-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .role-construction .rc-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .role-construction p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-3);
+    font-style: italic;
   }
 
   /* Education */
@@ -628,7 +664,7 @@
       <span class="num">02</span>
       <h2>Experience</h2>
       <span class="spacer"></span>
-      <a class="resume-btn" target="_blank" href="/assets/Brandon_Davis_Resume.pdf">
+      <a class="resume-btn" target="_blank" href="assets/Brandon_Davis_Resume.pdf">
         Resume
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       </a>
@@ -670,7 +706,7 @@
     </div>
     <div class="edu">
       <div class="edu-row">
-        <a class="logo logo-zoom" href="https://www.fsu.edu/" target="_blank" rel="noopener" aria-label="Florida State University website">
+        <a class="logo logo-contain" href="https://www.fsu.edu/" target="_blank" rel="noopener" aria-label="Florida State University website">
           <img src="assets/images/FloridaStateLogo.png" alt="Florida State University logo" />
         </a>
         <div>
@@ -679,7 +715,7 @@
         </div>
       </div>
       <div class="edu-row">
-        <a class="logo logo-zoom" href="https://www.scrumalliance.org/" target="_blank" rel="noopener" aria-label="Scrum Alliance website">
+        <a class="logo logo-contain" href="https://www.scrumalliance.org/" target="_blank" rel="noopener" aria-label="Scrum Alliance website">
           <img src="assets/images/CSPOLogo.png" alt="Certified Scrum Product Owner badge" />
         </a>
         <div>
@@ -696,13 +732,13 @@
       <h2>Contact</h2>
     </div>
     <div class="contact">
-      <a href="/cdn-cgi/l/email-protection#8eecfcefe0eae1e0f9eaeff8e7fdbfbecee9e3efe7e2a0ede1e3">
-        <span class="label">Email</span>
-        <span class="val"><span class="__cf_email__" data-cfemail="1b79697a757f74756c7f7a6d72682a2b5b7c767a727735787476">[email&#160;protected]</span></span>
-      </a>
       <a href="https://www.linkedin.com/in/brandonwdavis10" target="_blank" rel="noopener">
         <span class="label">LinkedIn</span>
         <span class="val">/in/brandonwdavis10</span>
+      </a>
+      <a href="https://github.com/brandonwdavis" target="_blank" rel="noopener">
+        <span class="label">GitHub</span>
+        <span class="val">/brandonwdavis</span>
       </a>
     </div>
   </section>
@@ -713,8 +749,21 @@
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const ROLES = [
+    {
+      logoSrc: "assets/images/CompassGroupLogo.jpg",
+      logoAlt: "Compass Group USA logo",
+      logoHref: "https://www.compass-usa.com/",
+      logoClass: "logo-contain logo-light logo-zoomin",
+      title: "Product Manager",
+      company: "Compass Group USA",
+      location: "Charlotte, NC",
+      dates: "May 2026 — Present",
+      construction: true,
+      tags: [],
+      bullets: []
+    },
     {
       logoSrc: "assets/images/AvidXchangeLogo.jpg",
       logoAlt: "AvidXchange logo",
@@ -736,6 +785,7 @@
       logoSrc: "assets/images/SSNCLogo.jpg",
       logoAlt: "SS&C Advent logo",
       logoHref: "https://www.advent.com/",
+      logoClass: "logo-contain logo-light",
       title: "Product Manager",
       company: "SS&C Advent",
       location: "Remote",
@@ -753,6 +803,7 @@
       logoSrc: "assets/images/SSNCLogo.jpg",
       logoAlt: "SS&C Advent logo",
       logoHref: "https://www.advent.com/",
+      logoClass: "logo-contain logo-light",
       title: "Solutions Analyst",
       company: "SS&C Advent",
       location: "Jacksonville, FL",
@@ -769,6 +820,7 @@
       logoSrc: "assets/images/SSNCLogo.jpg",
       logoAlt: "SS&C Advent logo",
       logoHref: "https://www.advent.com/",
+      logoClass: "logo-contain logo-light",
       title: "Client Support Specialist",
       company: "SS&C Advent",
       location: "Jacksonville, FL",
@@ -805,7 +857,7 @@
     el.innerHTML = `
       <div class="role-head" role="button" tabindex="0" aria-expanded="false" aria-controls="role-body-${i}">
         <div class="role-headline">
-          <a class="logo" href="${r.logoHref}" target="_blank" rel="noopener" aria-label="${r.company} website"><img src="${r.logoSrc}" alt="${r.logoAlt}" /></a>
+          <a class="logo ${r.logoClass || ''}" href="${r.logoHref}" target="_blank" rel="noopener" aria-label="${r.company} website"><img src="${r.logoSrc}" alt="${r.logoAlt}" /></a>
           <div class="titles">
             ${r.current ? `<div class="role-meta-top"><span class="role-current">● Current</span></div>` : ""}
             <h3 class="role-title">${r.title}</h3>
@@ -827,6 +879,11 @@
       <div class="role-body" id="role-body-${i}">
         <div class="role-body-inner">
           <div class="role-body-pad">
+            ${r.construction ? `
+            <div class="role-construction">
+              <p>Just getting started here, details coming soon.</p>
+            </div>
+            ` : `
             ${r.summary ? `<p class="role-summary">${r.summary}</p>` : ""}
             <ul class="bullets">
               ${r.bullets.map(b => `<li>${b}</li>`).join("")}
@@ -834,6 +891,7 @@
             <div class="role-tags">
               ${r.tags.map(t => `<span class="role-tag">${t}</span>`).join("")}
             </div>
+            `}
           </div>
         </div>
       </div>
@@ -889,8 +947,8 @@
   document.querySelector('.contact a[href*="linkedin"]').addEventListener('click', () => {
     gtag('event', 'click_linkedin');
   });
-  document.querySelector('.contact a[href*="email-protection"]').addEventListener('click', () => {
-    gtag('event', 'click_email');
+  document.querySelector('.contact a[href*="github"]').addEventListener('click', () => {
+    gtag('event', 'click_github');
   });
 
   // Education & certification links
@@ -910,102 +968,6 @@
     localStorage.setItem('bd-theme', next);
     gtag('event', 'toggle_theme', { theme: next });
   });
-</script>
-
-<!-- Tweaks -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<div id="tweaks-root"></div>
-<script type="text/babel">
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "theme": "light",
-  "accent": "#1f4fb8",
-  "density": "spacious",
-  "expandAll": false
-}/*EDITMODE-END*/;
-
-const ACCENTS = {
-  "#1f4fb8": "oklch(0.45 0.13 240)",
-  "#1d6e54": "oklch(0.48 0.12 165)",
-  "#3b3c3f": "oklch(0.40 0.01 250)",
-  "#7a3aa0": "oklch(0.45 0.13 305)"
-};
-const ACCENT_SOFT = {
-  "#1f4fb8": "oklch(0.95 0.03 240)",
-  "#1d6e54": "oklch(0.95 0.03 165)",
-  "#3b3c3f": "oklch(0.95 0.005 250)",
-  "#7a3aa0": "oklch(0.95 0.03 305)"
-};
-const ACCENT_INK = {
-  "#1f4fb8": "oklch(0.32 0.12 240)",
-  "#1d6e54": "oklch(0.32 0.10 165)",
-  "#3b3c3f": "oklch(0.25 0.01 250)",
-  "#7a3aa0": "oklch(0.32 0.12 305)"
-};
-
-function App() {
-  const [t, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
-
-  React.useEffect(() => {
-    document.body.dataset.theme = t.theme;
-    const root = document.documentElement;
-    root.style.setProperty('--accent', ACCENTS[t.accent] || ACCENTS["#1f4fb8"]);
-    root.style.setProperty('--accent-soft', ACCENT_SOFT[t.accent] || ACCENT_SOFT["#1f4fb8"]);
-    root.style.setProperty('--accent-ink', ACCENT_INK[t.accent] || ACCENT_INK["#1f4fb8"]);
-    document.querySelector('.page').style.setProperty('--maxw', t.density === 'compact' ? '680px' : t.density === 'spacious' ? '820px' : '760px');
-  }, [t.theme, t.accent, t.density]);
-
-  React.useEffect(() => {
-    document.querySelectorAll('.role').forEach(r => {
-      const btn = r.querySelector('.role-head');
-      if (t.expandAll) {
-        r.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      } else {
-        r.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }, [t.expandAll]);
-
-  const { TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakToggle } = window;
-
-  return (
-    <TweaksPanel title="Tweaks">
-      <TweakSection title="Theme">
-        <TweakRadio
-          label="Mode"
-          value={t.theme}
-          onChange={v => setTweak('theme', v)}
-          options={[{value:'light',label:'Light'},{value:'dark',label:'Dark'}]}
-        />
-        <TweakColor
-          label="Accent"
-          value={t.accent}
-          onChange={v => setTweak('accent', v)}
-          options={Object.keys(ACCENTS)}
-        />
-      </TweakSection>
-      <TweakSection title="Layout">
-        <TweakRadio
-          label="Density"
-          value={t.density}
-          onChange={v => setTweak('density', v)}
-          options={[{value:'compact',label:'Compact'},{value:'comfortable',label:'Comfy'},{value:'spacious',label:'Spacious'}]}
-        />
-        <TweakToggle
-          label="Expand all roles"
-          value={t.expandAll}
-          onChange={v => setTweak('expandAll', v)}
-        />
-      </TweakSection>
-    </TweaksPanel>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App/>);
 </script>
 
 </body>
