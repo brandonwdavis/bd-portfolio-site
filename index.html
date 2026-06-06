@@ -18,13 +18,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg: #f7f6f2;
+    --bg: oklch(0.987 0.006 240);
     --surface: #ffffff;
     --ink: #15171a;
     --ink-2: #3a3f47;
     --ink-3: #6b727c;
-    --line: #e6e3da;
-    --line-2: #ecebe5;
+    --line: oklch(0.91 0.010 240);
+    --line-2: oklch(0.953 0.008 240);
     --accent: oklch(0.45 0.13 240);
     --accent-soft: oklch(0.95 0.03 240);
     --accent-ink: oklch(0.32 0.12 240);
@@ -243,22 +243,6 @@
     outline: 2px solid var(--accent);
     outline-offset: 6px;
     border-radius: 4px;
-  }
-  .role-meta-top {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 6px;
-  }
-  .role-current {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent-ink);
-    background: var(--accent-soft);
-    padding: 2px 7px;
-    border-radius: 999px;
   }
   .role-title {
     font-size: 17px;
@@ -706,7 +690,7 @@
     </div>
     <div class="edu">
       <div class="edu-row">
-        <a class="logo logo-contain" href="https://www.fsu.edu/" target="_blank" rel="noopener" aria-label="Florida State University website">
+        <a class="logo logo-contain logo-light" href="https://www.fsu.edu/" target="_blank" rel="noopener" aria-label="Florida State University website">
           <img src="assets/images/FloridaStateLogo.png" alt="Florida State University logo" />
         </a>
         <div>
@@ -715,7 +699,7 @@
         </div>
       </div>
       <div class="edu-row">
-        <a class="logo logo-contain" href="https://www.scrumalliance.org/" target="_blank" rel="noopener" aria-label="Scrum Alliance website">
+        <a class="logo logo-contain logo-light" href="https://www.scrumalliance.org/" target="_blank" rel="noopener" aria-label="Scrum Alliance website">
           <img src="assets/images/CSPOLogo.png" alt="Certified Scrum Product Owner badge" />
         </a>
         <div>
@@ -859,7 +843,6 @@
         <div class="role-headline">
           <a class="logo ${r.logoClass || ''}" href="${r.logoHref}" target="_blank" rel="noopener" aria-label="${r.company} website"><img src="${r.logoSrc}" alt="${r.logoAlt}" /></a>
           <div class="titles">
-            ${r.current ? `<div class="role-meta-top"><span class="role-current">● Current</span></div>` : ""}
             <h3 class="role-title">${r.title}</h3>
             <div class="role-company">${r.company}</div>
             <div class="role-sub">
